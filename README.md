@@ -29,6 +29,6 @@ CRIA.
 **`SUDO MKDIR`**   
 "Não consig-"   
 **`SUDO CP -RF`**   
-Depois execute o shell de teste da mlx e torça pra dar tudo certo, porquê se algo der errado... boa sorte pra descobrir o q tá errado.
+Depois execute o shell de teste da mlx e torça pra dar tudo certo, porquê se algo der errado... boa sorte pra descobrir o que tá errado.
 
 # 🚧 WIP 🚧
