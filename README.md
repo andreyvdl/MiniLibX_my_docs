@@ -6,8 +6,8 @@ Então... basicamente a mlx é uma biblioteca gráfica para C, que permite que v
 
 Ela é documentada como todo jogo moderno sai... Uma bos-🤬. Mas não se preocupe, eu abrirei mão do meu tempo livre (e sanidade mental😵‍💫) pra te ajudar a destrinchar essa POR-🤬.
 
-* Fontes.
-* Instalar.
+* [Fontes.](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#fontes)
+* [Instalar.](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#instalar)
 * Básico.
 * Funções.
 
