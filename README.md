@@ -82,30 +82,35 @@ Compile ele com as seguintes flags: `-lmlx -lXext -lX11` e execute o binário (n
 Agora vamos ver o fluxograma do programa para um melhor entendimento:
 
 ```mermaid
-graph LR;
+graph TD;
 	main
 	mlx_init
 	mlx_new_window
 	mlx_key_hook
 	checa_teclas
 	mlx_loop
-	printf
+	printf1
+	printf2
 	mlx_destroy_window
 	mlx_destroy_display
 	free
 	exit
-	main(iniciar programa)-->mlx_init[Criar conectividade com o Xserver]
+	main((iniciar programa))-->mlx_init[Criar conectividade com o Xserver]
 	mlx_init-->mlx_new_window[Criar janela]
 	mlx_new_window-->mlx_loop[Ficar em loop esperando eventos]
 	mlx_loop-->mlx_key_hook{Alguma tecla foi pressionada?}
 	mlx_key_hook-->|não|mlx_key_hook
 	mlx_key_hook-->|sim|checa_teclas{Tecla pressionada foi ESC?}
-	checa_teclas-->|não|printf[Imprime ela no terminal]-->mlx_key_hook
-	checa_teclas-->|sim|printf[Imprime mensagem de encerramento]
-	printf-->mlx_destroy_window[Destroi a janela]
+	checa_teclas-->|não|printf2[Imprime a tecla no terminal]-->mlx_key_hook
+	checa_teclas-->|sim|printf1[Imprime mensagem de encerramento]
+	printf1-->mlx_destroy_window[Destroi a janela]
 	mlx_destroy_window-->mlx_destroy_display[Destroi a conexão com o Xserver]
 	mlx_destroy_display-->free[Libera a memória alocada para a conexão]
-	free-->exit(Encerra o programa)
+	free-->exit((Encerra o programa))
+	style main fill:#00FF00,color:#000000
+	style exit fill:#00FF00,color:#000000
+	style mlx_key_hook fill:#FFFF00,color:#000000
+	style checa_teclas fill:#FFFF00,color:#000000
 ```
 
 # 🚧 WIP 🚧
