@@ -9,7 +9,7 @@ Ela é documentada como todo jogo moderno sai... Uma bos-🤬. Mas não se preoc
 * [Fontes;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#fontes)
 * [Instalar;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#instalar)
 * [Básico;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#basico)
-* Funções;
+* [Funções;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/FUNCOES.md)
 
 ## Fontes
 
@@ -68,7 +68,7 @@ int main() {
 
 	ponteiro_da_mlx = mlx_init();
 
-	ponteiro_da_janela = mlx_new_window(ponteiro_da_mlx, 400, 300, "Janela");
+	ponteiro_da_janela = mlx_new_window(ponteiro_da_mlx, 200, 200, "Janela");
 
 	ponteiros.mlx = ponteiro_da_mlx;
 	ponteiros.janela = ponteiro_da_janela;
@@ -111,6 +111,63 @@ graph TD;
 	style exit fill:#00FF00,color:#000000
 	style mlx_key_hook fill:#FFFF00,color:#000000
 	style checa_teclas fill:#FFFF00,color:#000000
+```
+
+Agora que você entendeu na prática e visualmente o que o programa faz, vamos falar na teoria.   
+Nós criamos uma conexão entre nosso programa e o Xserver, depois criamos uma conexão entre nosso programa e uma janela gerada pelo Xserver, logo após dizemos para o Xserver ficar em loop esperando por eventos (como por exemplo, uma tecla ser pressionada), quando um evento acontece, o Xserver chama uma função que nós programamos, essa função recebe como parâmetro o código da tecla pressionada, e então nós verificamos se a tecla pressionada foi a `ESC`, se sim, nós encerramos o programa, se não, nós imprimimos a tecla pressionada no terminal.
+
+Sobre as flags de compilação:   
+`-lmlx` manda o compilador linkar com a biblioteca `mlx`, que nós compilamos e instalamos.   
+`-lXext` manda o compilador linkar com a biblioteca `libxext-dev`, [libXext](https://packages.debian.org/sid/libxext-dev) fornece uma interface de cliente X Window System para diversas extensões para o protocolo X.   
+`-lX11` manda o compilador linkar com a biblioteca `Xorg`, [X11](https://pt.wikipedia.org/wiki/X_Window_System) é um software de sistema e um protocolo que fornece uma base para interfaces gráficas de usuário (com o conceito de janelas) e funcionalidade rica de dispositivos de entrada para redes de computadores.
+
+## FUNÇÕES
+
+### mlx_clear_window
+
+> Limpa a janela, removendo imagens, pixels e strings.   
+> Recebe como parâmetros um ponteiro para a conexão com o **Xserver** e um ponteiro para a janela.   
+> Não tem retorno.
+```c
+void	mlx_clear_window(void *mlx_ptr, void *win_ptr);
+```
+
+### mlx_destroy_display\*
+
+> Encerra a conexão com o **Xserver**.   
+> Recebe como parâmetro um ponteiro para a conexão com o **Xserver**.   
+> Retorna `0` se a conexão foi encerrada com sucesso.
+```c
+int	mlx_destroy_display(void *mlx_ptr);
+```
+<sub><sub>\* Essa função não dá free no ponteiro, então tome cuidado para não vazar memória.</sub></sub>
+
+### mlx_destroy_window\*
+
+> Destroi a janela.   
+> Recebe como parâmetros um ponteiro para a conexão com o **Xserver** e um ponteiro para a janela.   
+> Retorna `1` se a janela foi destruída com sucesso.
+```c
+int	mlx_destroy_window(void *mlx_ptr, void *win_ptr);
+```
+<sub><sub>\* Essa função dá free no ponteiro, então não se preocupe com vazamentos.</sub></sub>
+
+### mlx_init
+
+> Inicializa a conexão com o **Xserver**.   
+> Não tem parâmetros.   
+> Retorna um ponteiro para a conexão criada.
+```c
+void	*mlx_init(void);
+```
+
+### mlx_new_window
+
+> Inicializa uma janela.   
+> Recebe como parâmetros um ponteiro para a conexão com o **Xserver**, o tamanho da janela em pixels (0 representa o canto superior esquerdo da tela, **width** avança para a direita e **height** avança para baixo) e o título da janela.   
+> Retorna um ponteiro para a janela criada.
+```c
+void	*mlx_new_window(void *mlx_ptr, int width, int height, char *title);
 ```
 
 # 🚧 WIP 🚧
