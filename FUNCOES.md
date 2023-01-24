@@ -4,9 +4,9 @@
 
 > Limpa a janela, removendo imagens, pixels e strings.   
 > Recebe como parâmetros um ponteiro para a conexão com o **Xserver** e um ponteiro para a janela.   
-> Não tem retorno.
+> Retorna `1` se a janela foi limpa com sucesso.
 ```c
-void	mlx_clear_window(void *mlx_ptr, void *win_ptr);
+int	mlx_clear_window(void *mlx_ptr, void *win_ptr);
 ```
 
 ## mlx_destroy_display\*
@@ -21,6 +21,16 @@ int	mlx_destroy_display(void *mlx_ptr);
 
 ## mlx_destroy_window\*
 
+> Destroi uma imagem.   
+> Recebe como parâmetros um ponteiro para a conexão com o **Xserver** e um ponteiro para a imagem.   
+> Retorna `1` se a imagem foi destruída com sucesso.
+```c
+int	mlx_destroy_image(void *mlx_ptr, void *img);
+```
+<sub>\* Essa função dá free no ponteiro, então não se preocupe com vazamentos.</sub>
+
+## mlx_destroy_window\*
+
 > Destroi a janela.   
 > Recebe como parâmetros um ponteiro para a conexão com o **Xserver** e um ponteiro para a janela.   
 > Retorna `1` se a janela foi destruída com sucesso.
@@ -28,6 +38,10 @@ int	mlx_destroy_display(void *mlx_ptr);
 int	mlx_destroy_window(void *mlx_ptr, void *win_ptr);
 ```
 <sub>\* Essa função dá free no ponteiro, então não se preocupe com vazamentos.</sub>
+
+## mlx_expose_hook
+
+> 
 
 ## mlx_init
 

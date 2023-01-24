@@ -23,6 +23,7 @@ void	draw(t_data *data)
 int	main(void)
 {
 	t_data	data;
+	int		clear = 42;
 
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, 300, 300, "De 0 a 200");
@@ -32,7 +33,8 @@ int	main(void)
 		draw(&data);
 		mlx_string_put(data.mlx, data.win, 50, 200, 0x00FFFFFF, "Limpando em 3 segundos...");
 		sleep(3);
-		mlx_clear_window(data.mlx, data.win);
+		clear = mlx_clear_window(data.mlx, data.win);
+		printf("Clear: %d | Janela limpa!\n", clear);
 		sleep(3);
 	}
 }
