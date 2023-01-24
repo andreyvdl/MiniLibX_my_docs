@@ -17,7 +17,7 @@ void	mlx_clear_window(void *mlx_ptr, void *win_ptr);
 ```c
 int	mlx_destroy_display(void *mlx_ptr);
 ```
-<sub><sub>\* Essa função não dá free no ponteiro, então tome cuidado para não vazar memória.</sub></sub>
+<sub>\* Essa função não dá free no ponteiro, então tome cuidado para não vazar memória.</sub>
 
 ## mlx_destroy_window\*
 
@@ -27,7 +27,7 @@ int	mlx_destroy_display(void *mlx_ptr);
 ```c
 int	mlx_destroy_window(void *mlx_ptr, void *win_ptr);
 ```
-<sub><sub>\* Essa função dá free no ponteiro, então não se preocupe com vazamentos.</sub></sub>
+<sub>\* Essa função dá free no ponteiro, então não se preocupe com vazamentos.</sub>
 
 ## mlx_init
 
