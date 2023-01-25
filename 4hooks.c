@@ -11,6 +11,10 @@ typedef struct s_data
 	void	*mlx;
 	void	*win;
 	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_data;
 
 int	destroi_tudo(t_data *data)
@@ -42,23 +46,25 @@ int	mouse(int button, int x, int y, t_data *data)
 
 int	desenha_triangulo(t_data *data)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 
-	data->img = mlx_new_image(data->mlx, 500, 500);
-	i = 0;
-	while (i < 500)
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
+	x = 300;
+	while (1)
 	{
-		j = 0;
-		while (j < 500)
+		y = x - 300;
+		while (y < 500)
 		{
-			img[i * 500 + j] = 0x00FF0000;
-			j++;
+			// oh continha desgraçada: dest = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+			// *(unsigned int *)dest = color;
+			data->addr[y * data->line_length + (x + y) * (data->bits_per_pixel / 8)] = 0x0000FF00;
+			data->addr[y * data->line_length + (x - y) * (data->bits_per_pixel / 8)] = 0x0000FF00;
+			data->addr[500 * data->line_length + y * (data->bits_per_pixel / 8)] = 0x0000FF00;
+			y++;
 		}
-		i++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	return (0);
 }
 
 int	main(void)
