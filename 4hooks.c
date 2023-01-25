@@ -3,6 +3,7 @@
 #include <mlx.h>
 #include <unistd.h>
 #include <time.h>
+#include <limits.h>
 
 #define ESC 65307
 
@@ -31,40 +32,65 @@ int	teclas(int keycode, t_data *data)
 	printf("keycode: %d\n", keycode);
 	if (keycode == ESC)
 		destroi_tudo(data);
-	printf("Você pressionou a tecla: ");
-	write(1, &keycode, 1);
+	if (keycode == 'r')
+	{
+		mlx_clear_window(data->mlx, data->win);
+		mlx_string_put(data->mlx, data->win, 150, 265, 0x00FF0000, "Clique abaixo com o mouse para pintar");
+	}
+	printf("Você pressionou a tecla: %c", keycode);
 	printf("\nCujo valor em inteiro é: %d\n", keycode);
 	return (0);
 }
 
-int	mouse(int button, int x, int y, t_data *data)
+int	rato(int button, int x, int y, t_data *data)
 {
 	printf("Botão pressionado: %d\n", button);
 	printf("Posição do mouse: %d, %d\n", x, y);
+	if (button == 1)
+		mlx_pixel_put(data->mlx, data->win, x, y, 0x00FFFFFF);
 	return (0);
+}
+
+void	pinta_pixel(t_data *data, int x, int y, int color)
+{
+	char	*dest;
+
+	// ponteiro_pontoXY = &addr[y * tamanho de 1 linha + x * (transforma bits em bytes)]
+	// conteudo_do_pontoXY = cor
+	dest = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dest = color;
 }
 
 int	desenha_triangulo(t_data *data)
 {
 	int	x;
 	int	y;
+	static int	i = 0;
+	static int	quantidade = 0;
 
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
-	x = 300;
-	while (1)
+	x = 250;
+	y = 0;
+	while (y < 250)
 	{
-		y = x - 300;
-		while (y < 500)
-		{
-			// oh continha desgraçada: dest = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-			// *(unsigned int *)dest = color;
-			data->addr[y * data->line_length + (x + y) * (data->bits_per_pixel / 8)] = 0x0000FF00;
-			data->addr[y * data->line_length + (x - y) * (data->bits_per_pixel / 8)] = 0x0000FF00;
-			data->addr[500 * data->line_length + y * (data->bits_per_pixel / 8)] = 0x0000FF00;
-			y++;
-		}
+		pinta_pixel(data, x + y, y, 0x0000FF00);
+		pinta_pixel(data, x - y, y, 0x0000FF00);
+		pinta_pixel(data, y, 250, 0x0000FF00);
+		y++;
 	}
-	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	while (y < 500)
+	{
+		pinta_pixel(data, y, 250, 0x0000FF00);
+		y++;
+	}
+	if (i == 499)
+		i = 0;
+	mlx_put_image_to_window(data->mlx, data->win, data->img, i++, 0);
+	if (quantidade == __INT32_MAX__)
+		quantidade = 0;
+	quantidade++;
+	usleep(quantidade);
+	return (0);
 }
 
 int	main(void)
@@ -73,15 +99,23 @@ int	main(void)
 	int	key = 42;
 	int	mouse = 42;
 	int	expose = 42;
+	int	loop = 42;
 
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, 500, 500, "Iscas");
-	data.img = mlx_new_image(data.mlx, 500, 500);
+	data.img = mlx_new_image(data.mlx, 500, 251);
 	key = mlx_key_hook(data.win, teclas, &data);
+	sleep(1);
 	printf("key: %d\n", key);
-	mouse = mlx_mouse_hook(data.win, mouse, &data);
+	mouse = mlx_mouse_hook(data.win, rato, &data);
+	sleep(1);
 	printf("mouse: %d\n", mouse);
 	expose = mlx_expose_hook(data.win, desenha_triangulo, &data);
+	sleep(1);
 	printf("expose: %d\n", expose);
+	loop = mlx_loop_hook(data.mlx, desenha_triangulo, &data);
+	sleep(1);
+	printf("loop: %d\n", loop);
+	mlx_string_put(data.mlx, data.win, 150, 265, 0x00FF0000, "Clique abaixo com o mouse para pintar");
 	mlx_loop(data.mlx);
 }

@@ -1,6 +1,6 @@
 # Mini Library X
 
-Então... basicamente a mlx é uma biblioteca gráfica para C, que permite que você crie coisas básicas como um joguinho, ou até **RAYfuckingTRACE**😮... Mas, como  
+Então... basicamente a mlx é uma biblioteca gráfica para C, que permite que você crie coisas básicas como um wireframe, ou até [**DUKEfuckingNUKEM**](https://www.youtube.com/watch?v=46MALEk-7cE)😮... Mas, como  
 
 > "Nem tudo que reluz é ouro." -Muita gente (-2022 - 2022)
 
@@ -21,13 +21,17 @@ Não, não vou passar link de _[comic sans](https://youtu.be/wDgQdr8ZkTw)_ na ve
 ## Instalar
 
 Basicamente só segue o que tá escrito no [README](https://github.com/42Paris/minilibx-linux), a não ser que esteja no WSL, (aka Linux Subsistema do Windows) aí acho bom seguir esse [daqui](https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html#getting-a-screen-on-windows-10-wsl2) (sinceramente fiz com [esse](https://github.com/codam-coding-college/MLX42#installation)).   
-"Ah Andrey, eu segui tudo direitinho mas não tenho essa `/usr/X11/lib` nem `/usr/X11/include` ou `/usr/X11/man/man3`"   
+> "Ah Andrey, eu segui tudo direitinho mas não tenho essa `/usr/X11/lib` nem `/usr/X11/include` ou `/usr/X11/man/man3`"
+
 CRIA.   
-"Ah mas Andrey, não é-"   
+> "Ah mas Andrey, não é-"
+
 **SÓ CRIA.**   
-"Mas não tenho permi-"   
+> "Mas não tenho permi-"
+
 **`SUDO MKDIR`**   
-"Não consig-"   
+> "Não consig-"
+
 **`SUDO CP -RF`**   
 Depois execute o shell de teste da mlx e torça pra dar tudo certo, porquê se algo der errado... boa sorte pra descobrir o que tá errado.
 
@@ -79,39 +83,8 @@ int main() {
 ```
 
 Compile ele com as seguintes flags: `-lmlx -lXext -lX11` e execute o binário (não se preocupe com o que cada flag e parte do código faz, explico depois), você agora deve ter uma janela com o título "Janela" com fundo preto, clique nela e pressione qualquer tecla do teclado, no terminal você verá uma mensagem, agora aperte a tecla `ESC`, mais uma mensagem vai aparecer no terminal e a janela vai sumir encerrando o programa (se você tentou fechar apertando o `X` no canto da janela, não se surpreenda por não funcionar, afinal ainda não programamos para isso).   
-Agora vamos ver o fluxograma do programa para um melhor entendimento:
-
-```mermaid
-graph TD;
-	main
-	mlx_init
-	mlx_new_window
-	mlx_key_hook
-	checa_teclas
-	mlx_loop
-	printf1
-	printf2
-	mlx_destroy_window
-	mlx_destroy_display
-	free
-	exit
-	main((iniciar programa))-->mlx_init[Criar conectividade com o Xserver]
-	mlx_init-->mlx_new_window[Criar janela]
-	mlx_new_window-->mlx_loop[Ficar em loop esperando eventos]
-	mlx_loop-->mlx_key_hook{Alguma tecla foi pressionada?}
-	mlx_key_hook-->|não|mlx_key_hook
-	mlx_key_hook-->|sim|checa_teclas{Tecla pressionada foi ESC?}
-	checa_teclas-->|não|printf2[Imprime a tecla no terminal]-->mlx_key_hook
-	checa_teclas-->|sim|printf1[Imprime mensagem de encerramento]
-	printf1-->mlx_destroy_window[Destroi a janela]
-	mlx_destroy_window-->mlx_destroy_display[Destroi a conexão com o Xserver]
-	mlx_destroy_display-->free[Libera a memória alocada para a conexão]
-	free-->exit((Encerra o programa))
-	style main fill:#00FF00,color:#000000
-	style exit fill:#00FF00,color:#000000
-	style mlx_key_hook fill:#FFFF00,color:#000000
-	style checa_teclas fill:#FFFF00,color:#000000
-```
+Agora vamos ver o fluxograma do programa para um melhor entendimento:   
+![Fluxograma](fluxograma.png)
 
 Agora que você entendeu na prática e visualmente o que o programa faz, vamos falar na teoria.   
 Nós criamos uma conexão entre nosso programa e o Xserver, depois criamos uma conexão entre nosso programa e uma janela gerada pelo Xserver, logo após dizemos para o Xserver ficar em loop esperando por eventos (como por exemplo, uma tecla ser pressionada), quando um evento acontece, o Xserver chama uma função que nós programamos, essa função recebe como parâmetro o código da tecla pressionada, e então nós verificamos se a tecla pressionada foi a `ESC`, se sim, nós encerramos o programa, se não, nós imprimimos a tecla pressionada no terminal.
