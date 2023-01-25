@@ -24,8 +24,8 @@ int	main(void)
 		data.img = mlx_xpm_file_to_image(data.mlx, "pikachu.xpm", &inutil, &inutil);
 		printf("Carregando imagem...\n");
 		sleep(1);
-		srandom(time(NULL));
-		mlx_put_image_to_window(data.mlx, data.win, data.img, random()%301, random()%301);
+		srand(time(NULL));
+		mlx_put_image_to_window(data.mlx, data.win, data.img, rand()%301, rand()%301);
 		printf("Deletando imagem...\n");
 		sleep(1);
 		inutil = mlx_destroy_image(data.mlx, data.img);

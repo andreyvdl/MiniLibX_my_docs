@@ -9,7 +9,7 @@
 int	mlx_clear_window(void *mlx_ptr, void *win_ptr);
 ```
 
-## mlx_destroy_display\*
+## mlx_destroy_display<sup>[1](#nota1)</sup>
 
 > Encerra a conexão com o **Xserver**.   
 > Recebe como parâmetro um ponteiro para a conexão com o **Xserver**.   
@@ -17,9 +17,9 @@ int	mlx_clear_window(void *mlx_ptr, void *win_ptr);
 ```c
 int	mlx_destroy_display(void *mlx_ptr);
 ```
-<sub>\* Essa função não dá free no ponteiro, então tome cuidado para não vazar memória.</sub>
+<sub><sup><a href="#nota1">[1]</a></sup>Essa função não dá free no ponteiro, então tome cuidado para não vazar memória.</sub>
 
-## mlx_destroy_window\*
+## mlx_destroy_image<sup>2</sup>
 
 > Destroi uma imagem.   
 > Recebe como parâmetros um ponteiro para a conexão com o **Xserver** e um ponteiro para a imagem.   
@@ -27,9 +27,9 @@ int	mlx_destroy_display(void *mlx_ptr);
 ```c
 int	mlx_destroy_image(void *mlx_ptr, void *img);
 ```
-<sub>\* Essa função dá free no ponteiro, então não se preocupe com vazamentos.</sub>
+<sub><sup>[2]</sup>Essa função dá free no ponteiro, então não se preocupe com vazamentos.</sub>
 
-## mlx_destroy_window\*
+## mlx_destroy_window<sup>3</sup>
 
 > Destroi a janela.   
 > Recebe como parâmetros um ponteiro para a conexão com o **Xserver** e um ponteiro para a janela.   
@@ -37,11 +37,19 @@ int	mlx_destroy_image(void *mlx_ptr, void *img);
 ```c
 int	mlx_destroy_window(void *mlx_ptr, void *win_ptr);
 ```
-<sub>\* Essa função dá free no ponteiro, então não se preocupe com vazamentos.</sub>
+<sub><sup>[3]</sup>Essa função dá free no ponteiro, então não se preocupe com vazamentos.</sub>
 
 ## mlx_expose_hook
 
-> 
+> Chama uma função a cada loop da `mlx_loop` (ou seja, quando não há nenhum outro evento).   
+> Recebe como parâmetros um ponteiro para a janela, uma função que será chamada e um ponteiro para um argumento.   
+> Retorna um número aleatório.   
+> A função que é chamada recebe como parâmetro um ponteiro para um argumento.
+```c
+int	mlx_expose_hook(void *win_ptr, int (*funct_ptr)(), void *param);
+
+int	funct_ptr(void *param);
+```
 
 ## mlx_init
 
