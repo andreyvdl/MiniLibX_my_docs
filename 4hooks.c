@@ -29,7 +29,6 @@ int	destroi_tudo(t_data *data)
 
 int	teclas(int keycode, t_data *data)
 {
-	printf("keycode: %d\n", keycode);
 	if (keycode == ESC)
 		destroi_tudo(data);
 	if (keycode == 'r')
@@ -90,7 +89,7 @@ int	desenha_triangulo(t_data *data)
 		quantidade = 0;
 	quantidade++;
 	usleep(quantidade);
-	return (0);
+	return (42);
 }
 
 int	main(void)
@@ -116,6 +115,6 @@ int	main(void)
 	loop = mlx_loop_hook(data.mlx, desenha_triangulo, &data);
 	sleep(1);
 	printf("loop: %d\n", loop);
-	mlx_string_put(data.mlx, data.win, 150, 265, 0x00FF0000, "Clique abaixo com o mouse para pintar");
+	mlx_string_put(data.mlx, data.win, 150, 265, mlx_get_color_value(data.mlx, 0x00FF0000), "Clique abaixo com o mouse para pintar");
 	mlx_loop(data.mlx);
 }

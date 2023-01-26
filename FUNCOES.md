@@ -19,7 +19,7 @@ int	mlx_destroy_display(void *mlx_ptr);
 ```
 <sub><sup>**[1]**</sup>Essa função não dá free no ponteiro, então tome cuidado para não vazar memória.</sub>
 
-## mlx_destroy_image<sup>**2**</sup>
+## mlx_destroy_image<sup>**1**</sup>
 
 * Destroi uma imagem.   
 * Recebe como parâmetros um ponteiro para a conexão com o **Xserver** e um ponteiro para a imagem.   
@@ -27,9 +27,9 @@ int	mlx_destroy_display(void *mlx_ptr);
 ```c
 int	mlx_destroy_image(void *mlx_ptr, void *img);
 ```
-<sub><sup>**[2]**</sup>Essa função dá free no ponteiro, então não se preocupe com vazamentos.</sub>
+<sub><sup>**[1]**</sup>Essa função dá free no ponteiro, então não se preocupe com vazamentos.</sub>
 
-## mlx_destroy_window<sup>**3**</sup>
+## mlx_destroy_window<sup>**1**</sup>
 
 * Destroi a janela.   
 * Recebe como parâmetros um ponteiro para a conexão com o **Xserver** e um ponteiro para a janela.   
@@ -37,20 +37,40 @@ int	mlx_destroy_image(void *mlx_ptr, void *img);
 ```c
 int	mlx_destroy_window(void *mlx_ptr, void *win_ptr);
 ```
-<sub><sup>**[3]**</sup>Essa função dá free no ponteiro, então não se preocupe com vazamentos.</sub>
+<sub><sup>**[1]**</sup>Essa função dá free no ponteiro, então não se preocupe com vazamentos.</sub>
 
 ## mlx_expose_hook
 
-> "A função `mlx_expose_hook` é uma função de gancho que é chamada quando uma janela precisa ser redesenhada, geralmente devido a uma mudança de tamanho ou ao retorno de uma janela minimizada. Essa função é geralmente usada para redesenhar a janela quando ela é exposta." - chatGPT.   
-* Eu sinceramente não entendi o uso dela nem pra que serve.   
+* Ela só funciona se você mudar o tamanho da janela (tive que testar no WSL), mesmo que o Manuel diga que funciona quando você minimiza a janela... [**NÃO ACREDITE NAS MENTIRAS DELE**](https://youtu.be/VIbjjDtQVhQ).   
 * Recebe como parâmetros um ponteiro para a janela, uma função que será chamada e um ponteiro para um argumento.   
-* Retorna sempre `10`.   
-* A função que é chamada recebe como parâmetro um ponteiro para um argumento.
-```c 	 	
+* Retorno é indefinido.   
+* A função que é chamada recebe como parâmetro um ponteiro para um argumento.   
+* A função que é chamada pode retornar o que ela quiser.
+```c
 int	mlx_expose_hook(void *win_ptr, int (*funct_ptr)(), void *param);
 
 int	funct_ptr(void *param);
 ```
+
+## mlx_get_color_value
+
+* Ela transforma uma cor em um valor inteiro... só vi utilidade em querer saber o valor decimal de um hex... o que da pra fazer na internet **OU NA CALCULADORA**😡...   
+* Recebe como parâmetros um ponteiro para a conexão com o **Xserver** e uma cor em int😑...   
+* Retorna um valor inteiro que representa a cor😶...
+```c
+int	mlx_get_color_value(void *mlx_ptr, int color);
+```
+
+## mlx_get_data_addr
+
+* Ela cria array de tipo char do tamanho **total**<sup>1</sup> da imagem e coloca informação sobre os `bits por pixel`, `tamanho de 1 linha` e [`extremidade mais importante`](https://pt.wikipedia.org/wiki/Extremidade_(ordena%C3%A7%C3%A3o)).   
+* Recebe como parâmetros um ponteiro para a imagem, um ponteiro para o tamanho de cada pixel, um ponteiro para o tamanho de cada linha e um ponteiro para o tamanho da imagem.   
+* Retorna um ponteiro para o array de tipo char.
+```c
+char	*mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *size_line, int *endian);
+```
+<sub><sup>1</sup>Com total eu teorizo que a formula para o tamanho é: `largura da imagem * altura da imagem * bits por pixel`, isso pois para conseguirmos pintar um pixel nessa imagem, acessamos o array na posição `y * size_line + x * (bpp / 8)` onde x é a posição da largura e y a da altura (no código fonte tem essa conta `(width + 32) * height * 4`, mas tenho quase certeza que ela retorna num número menor que o array final).</sub>
+
 
 ## mlx_init
 
