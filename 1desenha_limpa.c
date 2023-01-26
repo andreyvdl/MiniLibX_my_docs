@@ -26,7 +26,7 @@ int	main(void)
 	int		clear = 42;
 
 	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, 300, 300, "De 0 a 200");
+	data.win = mlx_new_window(data.mlx, 300, 300, "RGB");
 	while (1)
 	{
 		mlx_string_put(data.mlx, data.win, 100, 90, 0x00FFFFFF, "Desenhando...");

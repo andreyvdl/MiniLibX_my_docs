@@ -54,8 +54,8 @@ void	pinta_pixel(t_data *data, int x, int y, int color)
 {
 	char	*dest;
 
-	// ponteiro_pontoXY = &addr[y * tamanho de 1 linha + x * (transforma bits em bytes)]
-	// conteudo_do_pontoXY = cor
+	// char *ponteiro_do_pontoXY = &addr[y * tamanho de 1 linha + x * (transforma bits por pixel em bytes por pixel)]
+	// *(unsigned int *)conteudo_do_pontoXY = cor
 	dest = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dest = color;
 }
