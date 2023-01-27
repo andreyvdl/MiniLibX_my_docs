@@ -106,9 +106,9 @@ int	mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct_ptr)(), void *p
 
 ## mlx_init
 
-> Inicializa a conexão com o **Xserver**.   
-> Não tem parâmetros.   
-> Retorna um ponteiro para a conexão criada.
+* Inicializa a conexão com o **Xserver**.   
+* Não tem parâmetros.   
+* Retorna um ponteiro para a conexão criada.
 ```c
 void	*mlx_init(void);
 ```
@@ -238,9 +238,9 @@ void	*mlx_new_image(void *mlx_ptr, int width, int height);
 
 ## mlx_new_window
 
-> Inicializa uma janela.   
-> Recebe como parâmetros um ponteiro para a conexão com o **Xserver**, o tamanho da janela em pixels (0 representa o canto superior esquerdo da tela, **width** avança para a direita e **height** avança para baixo) e o título da janela.   
-> Retorna um ponteiro para a janela criada.
+* Inicializa uma janela.   
+* Recebe como parâmetros um ponteiro para a conexão com o **Xserver**, o tamanho da janela em pixels (0 representa o canto superior esquerdo da tela, **width** avança para a direita e **height** avança para baixo) e o título da janela.   
+* Retorna um ponteiro para a janela criada.
 ```c
 void	*mlx_new_window(void *mlx_ptr, int width, int height, char *title);
 ```
