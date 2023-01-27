@@ -113,7 +113,7 @@ int	mlx_clear_window(void *mlx_ptr, void *win_ptr);
 ```c
 int	mlx_destroy_display(void *mlx_ptr);
 ```
-<sub><sup>**[1]**</sup>Essa função não dá free no ponteiro, então tome cuidado para não vazar memória.</sub>
+<sub><sup>**1**</sup>Essa função não dá free no ponteiro, então tome cuidado para não vazar memória.</sub>
 
 ### mlx_destroy_image<sup>**1**</sup>
 
@@ -123,7 +123,7 @@ int	mlx_destroy_display(void *mlx_ptr);
 ```c
 int	mlx_destroy_image(void *mlx_ptr, void *img);
 ```
-<sub><sup>**[1]**</sup>Essa função dá free no ponteiro, então não se preocupe com vazamentos.</sub>
+<sub><sup>**1**</sup>Essa função dá free no ponteiro, então não se preocupe com vazamentos.</sub>
 
 ### mlx_destroy_window<sup>**1**</sup>
 
@@ -133,7 +133,7 @@ int	mlx_destroy_image(void *mlx_ptr, void *img);
 ```c
 int	mlx_destroy_window(void *mlx_ptr, void *win_ptr);
 ```
-<sub><sup>**[1]**</sup>Essa função dá free no ponteiro, então não se preocupe com vazamentos.</sub>
+<sub><sup>**1**</sup>Essa função dá free no ponteiro, então não se preocupe com vazamentos.</sub>
 
 ### mlx_do_key_autorepeaton e mlx_do_key_autorepeatoff
 
