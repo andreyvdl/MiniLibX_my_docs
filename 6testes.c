@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <time.h>
 
 typedef struct s_data
 {
@@ -29,30 +30,43 @@ int	main(void)
 	int		mouse_x = 42;
 	int		mouse_y = 42;
 	int		r = 42;
-	char	*tabuleiro_damas[] = {
-		"16 16 3 1",
-		"  c None",
-		"+ c brown",
-		"W c white",
-		"R c red",
-		"++++++++++++++++",
-		"+RWRWRWRWRWRWRW+",
-		"+WRWRWRWRWRWRWR+",
-		"+RWRWRWRWRWRWRW+",
-		"+WRWRWRWRWRWRWR+",
-		"+RWRWRWRWRWRWRW+",
-		"+WRWRWRWRWRWRWR+",
-		"+RWRWRWRWRWRWRW+",
-		"+WRWRWRWRWRWRWR+",
-		"+RWRWRWRWRWRWRW+",
-		"+WRWRWRWRWRWRWR+",
-		"+RWRWRWRWRWRWRW+",
-		"+WRWRWRWRWRWRWR+",
-		"+RWRWRWRWRWRWRW+",
-		"+WRWRWRWRWRWRWR+",
-		"+RWRWRWRWRWRWRW+",
-		"+WRWRWRWRWRWRWR+",
-		"++++++++++++++++"
+	char	*damas[] = {
+		"32 32 3 1 ",
+		"+ c #0000FF",
+		". c #00FFFF",
+		"& c #FFFFFF",
+		"++++++++++++++++++++++++++++++++",
+		"++++++++++++++++++++++++++++++++",
+		"++++++++++++++++++++++++++++++++",
+		"++++++++++++++++++++++++++++++++",
+		"++++....&&&&....&&&&....&&&&++++",
+		"++++....&&&&....&&&&....&&&&++++",
+		"++++....&&&&....&&&&....&&&&++++",
+		"++++....&&&&....&&&&....&&&&++++",
+		"++++&&&&....&&&&....&&&&....++++",
+		"++++&&&&....&&&&....&&&&....++++",
+		"++++&&&&....&&&&....&&&&....++++",
+		"++++&&&&....&&&&....&&&&....++++",
+		"++++....&&&&....&&&&....&&&&++++",
+		"++++....&&&&....&&&&....&&&&++++",
+		"++++....&&&&....&&&&....&&&&++++",
+		"++++....&&&&....&&&&....&&&&++++",
+		"++++&&&&....&&&&....&&&&....++++",
+		"++++&&&&....&&&&....&&&&....++++",
+		"++++&&&&....&&&&....&&&&....++++",
+		"++++&&&&....&&&&....&&&&....++++",
+		"++++....&&&&....&&&&....&&&&++++",
+		"++++....&&&&....&&&&....&&&&++++",
+		"++++....&&&&....&&&&....&&&&++++",
+		"++++....&&&&....&&&&....&&&&++++",
+		"++++&&&&....&&&&....&&&&....++++",
+		"++++&&&&....&&&&....&&&&....++++",
+		"++++&&&&....&&&&....&&&&....++++",
+		"++++&&&&....&&&&....&&&&....++++",
+		"++++++++++++++++++++++++++++++++",
+		"++++++++++++++++++++++++++++++++",
+		"++++++++++++++++++++++++++++++++",
+		"++++++++++++++++++++++++++++++++"
 		};
 
 	data.mlx = mlx_init();
@@ -66,17 +80,16 @@ int	main(void)
 	sleep(1);
 	r = mlx_mouse_hide(data.mlx, data.win);
 	printf("hide = %d\n", r);
-	r = mlx_mouse_move(data.mlx, data.win, 0, 0);
+	srand(time(NULL));
+	r = mlx_mouse_move(data.mlx, data.win, rand()%500, rand()%500);
 	printf("move = %d\n", r);
 	sleep(1);
 	r = mlx_mouse_show(data.mlx, data.win);
 	printf("show = %d\n", r);
 	sleep(1);
-	mlx_set_font(data.mlx, data.win, "comic sans ms");
-	printf("font = %d\n", r);
-	data.img = mlx_xpm_to_image(data.mlx, tabuleiro_damas, &tela_x, &tela_y);
-	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
-	mlx_string_put(data.mlx, data.win, 50, 50, 0x00FFFFFF, "Vai uma partidinha de dama ai?");
+	data.img = mlx_xpm_to_image(data.mlx, damas, &tela_x, &tela_y);
+	mlx_put_image_to_window(data.mlx, data.win, data.img, 50, 350);
+	mlx_string_put(data.mlx, data.win, 50, 400, 0x00FFFFFF, "Vai uma partidinha de cavalheiros ai?");
 	mlx_hook(data.win, 17, 0, destroi_tudo, &data);
 	mlx_loop(data.mlx);
 }
