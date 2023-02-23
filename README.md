@@ -368,7 +368,7 @@ int	mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, 
 int	mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
 ```
 
-### mlx_set_font
+### mlx_set_font 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 
 * Supostamente muda a fonte da função `mlx_string_put`, mas não funciona.   
 * Recebe como parâmetros um ponteiro para a conexão com o **Xserver**, um ponteiro para a janela e o nome da fonte.   

@@ -89,6 +89,8 @@ int	main(void)
 	sleep(1);
 	data.img = mlx_xpm_to_image(data.mlx, damas, &tela_x, &tela_y);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 50, 350);
+// 6x13
+	mlx_set_font(data.mlx, data.win, "6x13"); // aguardem que estou investigando
 	mlx_string_put(data.mlx, data.win, 50, 400, 0x00FFFFFF, "Vai uma partidinha de cavalheiros ai?");
 	mlx_hook(data.win, 17, 0, destroi_tudo, &data);
 	mlx_loop(data.mlx);

@@ -101,7 +101,7 @@ int	main(void)
 	int	loop = 42;
 
 	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, 500, 500, "Ganhcos");
+	data.win = mlx_new_window(data.mlx, 500, 500, "Ganchos");
 	data.img = mlx_new_image(data.mlx, 500, 251);
 	key = mlx_key_hook(data.win, teclas, &data);
 	sleep(1);
