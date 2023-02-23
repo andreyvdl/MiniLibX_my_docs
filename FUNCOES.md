@@ -177,9 +177,9 @@ int	mlx_loop_hook(void *mlx_ptr, int (*funct_ptr)(), void *param);
 int	funct_ptr(void *param);
 ```
 
-## mlx_mouse_move
+### mlx_mouse_move
 
-* Supostamente deveria mover o mouse para a posição desejada, mas não funciona.   
+* Move o mouse para uma posição X e Y na tela.   
 * Recebe como parâmetros um ponteiro para a conexão **Xserver**, um ponteiro para a janela, uma posição x e uma posição y.   
 * Retorna `0`.
 ```c
@@ -272,14 +272,15 @@ int	mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, 
 int	mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
 ```
 
-## mlx_set_font
+### mlx_set_font
 
-* Supostamente muda a fonte da função `mlx_string_put`, mas não funciona.   
-* Recebe como parâmetros um ponteiro para a conexão com o **Xserver**, um ponteiro para a janela e o nome da fonte.   
+* Muda a fonte<sup>1</sup> da função `mlx_string_put`.   
+* Recebe como parâmetros um ponteiro para a conexão com o **Xserver**, um ponteiro para a janela e o nome da fonte, esse nome pode ser simples ou composto (ex: "5x7" "-Misc-Fixed-Medium-R-Normal--7-70-75-75-C-50-ISO10646-1").   
 * Retorno indefinido.
 ```c
 int	mlx_set_font(void *mlx_ptr, void *win_ptr, char *name);
 ```
+<sub><sup>1</sup>Informações sobre as fontes que podem ser utilizadas [aqui](https://www.cl.cam.ac.uk/~mgk25/ucs-fonts.html) (descoberta das fontes por Emmanuel🐶).<sub>
 
 ## mlx_string_put
 
