@@ -361,12 +361,13 @@ int	mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, 
 
 ### mlx_get_screen_size
 
-* Pega o tamanho do monitor.   
+* Pega o tamanho do monitor<sup>1</sup>.   
 * Recebe como parâmetros um ponteiro para a conexão com o **Xserver**, um ponteiro para armazenar a largura e um ponteiro para armazenar a altura.   
 * Retorno indefinido.
 ```c
 int	mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
 ```
+<sub><sup>1</sup>Se você tiver mais de 1 monitor ele guarda a largura e altura somada, por exemplo se um monitor é 1900x1080 e o outro é 1280x1024, o resultado será 3180x2104 (descoberto por Raphael🏎️).</sub>
 
 ### mlx_set_font
 
