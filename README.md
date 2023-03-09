@@ -1,22 +1,32 @@
-# Mini Library X
+<h1 align="center">
+ Mini Library X
+</h1>
 
-Então... basicamente a mlx é uma biblioteca gráfica para C, que permite que você crie coisas básicas como um wireframe, ou até [**DUKEfuckingNUKEM**](https://www.youtube.com/watch?v=46MALEk-7cE)😮... Mas, como  
+<p align="center">
+	<b><i>A documentação não-oficial e informal da biblioteca MLX usada pela 42 Ecole em pt-br. </i></b><br>
+</p>
+
+## MINILIBX
+A biblioteca Minilibx é uma biblioteca gráfica de baixo nível criada pela 42ecole, uma escola de programação francesa. Essa biblioteca permite a criação de aplicações gráficas simples em sistemas operacionais baseados em Unix, como macOS e Linux.
+
+A Minilibx é escrita em C e é usada para desenhar e manipular imagens e pixels em uma janela. A biblioteca suporta a exibição de imagens, a criação de janelas e o uso de teclas do teclado e mouse como entrada.
+
+A Minilibx é frequentemente usada em projetos de programação da 42ecole, como parte do aprendizado dos alunos sobre programação de baixo nível e gráficos computacionais.
+
+> 🗣️  Então... basicamente a mlx é uma biblioteca gráfica para C, que permite que você crie coisas básicas como um wireframe, ou até [**DUKEfuckingNUKEM**](https://www.youtube.com/watch?v=46MALEk-7cE)😮... Mas, como  
 
 > "Nem tudo que reluz é ouro." -Muita gente (-2022 - 2022)
 
-Ela é documentada como todo jogo moderno sai... Uma bos-🤬. Mas não se preocupe, eu abrirei mão do meu tempo livre (e sanidade mental😵‍💫) pra te ajudar a destrinchar essa POR-🤬.
+> Ela é documentada como todo jogo moderno sai... Uma bos-🤬. Mas não se preocupe, eu abrirei mão do meu tempo livre (e sanidade mental😵‍💫) pra te ajudar a destrinchar essa POR-🤬.
 
-* [Fontes;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#fontes)
-* [Instalar;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#instalar)
-* [Básico;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#basico)
-* [Funções;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/FUNCOES.md)
-
-## Fontes
-
-Não, não vou passar link de _[comic sans](https://youtu.be/wDgQdr8ZkTw)_ na verdade vou passar link de documentações feitas de forma séria, então caso você já tenha enjoado do meu texto... vaza, xispa daqui.   
-* [harm-smits](https://harm-smits.github.io/42docs/libs/minilibx).   
-* [Aurelien Brabant (brabo)](https://aurelienbrabant.fr/blog?tags=school+42).
-* [Soraia Novaes](https://soraianovaes.notion.site/So-Long-c6d751eb784f46b8848a8cda5e3fdf4d).
+## Conteudo
+* [MiniLibx;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#MINILIBX) Uma breve descrição da biblioteca e de suas funcionalidades.
+* [Instalar;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#instalar)  Como instalar a biblioteca em um sistema operacional (Windows, Linux ou Mac).
+* [Básico;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#basico) Instruções para a utilização da biblioteca, incluindo exemplos de código.
+* [Funções;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/FUNCOES.md) Explicação sobre as funções disponíveis, seus parâmetros e seus retornos.
+* [Fontes;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#fontes) Fontes usadas de inspiração na criação desse Doc.
+* [Como contribuir;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#Contribua_com_o_projeto) Contribua com a documentação
+* [Licença;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#Licença) Licença da documentação
 
 ## Instalar
 
@@ -29,11 +39,15 @@ CRIA.
 **SÓ CRIA.**   
 > "Mas não tenho permi-"
 
-**`SUDO MKDIR`**   
+```bash
+$ sudo mkdir
+```
 > "Não consig-"
 
-**`SUDO CP -RF`**   
-Depois execute o shell de teste da mlx e torça pra dar tudo certo, porquê se algo der errado... boa sorte pra descobrir o que tá errado.
+```bash
+$ sudo cp -rf
+```
+❗️| Depois execute o shell de teste da mlx e torça pra dar tudo certo, porquê se algo der errado... boa sorte pra descobrir o que tá errado.
 
 ## Básico
 
@@ -89,7 +103,7 @@ Agora vamos ver o fluxograma do programa para um melhor entendimento:
 Agora que você entendeu na prática e visualmente o que o programa faz, vamos falar na teoria.   
 Nós criamos uma conexão entre nosso programa e o Xserver, depois criamos uma conexão entre nosso programa e uma janela gerada pelo Xserver, logo após dizemos para o Xserver ficar em loop esperando por eventos (como por exemplo, uma tecla ser pressionada), quando um evento acontece, o Xserver chama uma função que nós programamos, essa função recebe como parâmetro o código da tecla pressionada, e então nós verificamos se a tecla pressionada foi a `ESC`, se sim, nós encerramos o programa, se não, nós imprimimos a tecla pressionada no terminal.
 
-Sobre as flags de compilação:   
+🏳️ As flags de compilação:   
 `-lmlx` manda o compilador linkar com a biblioteca `mlx`, que nós compilamos e instalamos.   
 `-lXext` manda o compilador linkar com a biblioteca `libxext-dev`, [libXext](https://packages.debian.org/sid/libxext-dev) fornece uma interface de cliente X Window System para diversas extensões para o protocolo X.   
 `-lX11` manda o compilador linkar com a biblioteca `Xorg`, [X11](https://pt.wikipedia.org/wiki/X_Window_System) é um software de sistema e um protocolo que fornece uma base para interfaces gráficas de usuário (com o conceito de janelas) e funcionalidade rica de dispositivos de entrada para redes de computadores.
@@ -389,3 +403,19 @@ int	mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *
 ```
 
 Caso queira testar algumas delas existem alguns arquivos .c númerados de `0` a `6`, fiz eles demonstrando algumas funções incluindo algumas que não funcionam (infelizmente a set_font não funciona num nível que causa erro).
+
+## Fontes
+
+Não, não vou passar link de _[comic sans](https://youtu.be/wDgQdr8ZkTw)_ na verdade vou passar link de documentações feitas de forma séria, então caso você já tenha enjoado do meu texto... vaza, xispa daqui.   
+* [harm-smits](https://harm-smits.github.io/42docs/libs/minilibx).   
+* [Aurelien Brabant (brabo)](https://aurelienbrabant.fr/blog?tags=school+42).
+* [Soraia Novaes](https://soraianovaes.notion.site/So-Long-c6d751eb784f46b8848a8cda5e3fdf4d).
+
+
+## Contribua com o projeto ☕ 
+Quer fazer parte desse projeto? Clique [AQUI](CONTRIBUTING.md) e leia como contribuir.<br>
+
+## Licença 📜
+Este projeto está licenciado sob os termos do arquivo [LICENÇA](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/LICENSE). Veja o arquivo para mais detalhes. <br>
+
+<p align="center"> Documentação criada com revolta e paz no coração por [adantas-](https://github.com/andreyvdl) . </p>
