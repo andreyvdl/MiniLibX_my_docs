@@ -1,12 +1,12 @@
 <h1 align="center">
- Mini Library X
+ Mini Library X 📄
 </h1>
 
 <p align="center">
 	<b><i>A documentação não-oficial e informal da biblioteca MLX usada pela 42 Ecole em pt-br. </i></b><br>
 </p>
 
-## MINILIBX
+## A Mini Library X 
 A biblioteca Minilibx é uma biblioteca gráfica de baixo nível criada pela 42ecole, uma escola de programação francesa. Essa biblioteca permite a criação de aplicações gráficas simples em sistemas operacionais baseados em Unix, como macOS e Linux.
 
 A Minilibx é escrita em C e é usada para desenhar e manipular imagens e pixels em uma janela. A biblioteca suporta a exibição de imagens, a criação de janelas e o uso de teclas do teclado e mouse como entrada.
@@ -19,16 +19,16 @@ A Minilibx é frequentemente usada em projetos de programação da 42ecole, como
 
 > Ela é documentada como todo jogo moderno sai... Uma bos-🤬. Mas não se preocupe, eu abrirei mão do meu tempo livre (e sanidade mental😵‍💫) pra te ajudar a destrinchar essa POR-🤬.
 
-## Conteudo
+## Sumario
 * [MiniLibx;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#MINILIBX) Uma breve descrição da biblioteca e de suas funcionalidades.
-* [Instalar;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#instalar)  Como instalar a biblioteca em um sistema operacional (Windows, Linux ou Mac).
+* [Instalar;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#instalação)  Como instalar a biblioteca em um sistema operacional (Windows, Linux ou Mac).
 * [Básico;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#basico) Instruções para a utilização da biblioteca, incluindo exemplos de código.
 * [Funções;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/FUNCOES.md) Explicação sobre as funções disponíveis, seus parâmetros e seus retornos.
 * [Fontes;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#fontes) Fontes usadas de inspiração na criação desse Doc.
-* [Como contribuir;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#Contribua_com_o_projeto) Contribua com a documentação
-* [Licença;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#Licença) Licença da documentação
+* [Como contribuir;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#contribua_com_o_projeto) Contribua com a documentação
+* [Licença;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#licença) Licença da documentação
 
-## Instalar
+## Instalação
 
 Basicamente só segue o que tá escrito no [README](https://github.com/42Paris/minilibx-linux), a não ser que esteja no WSL, (aka Linux Subsistema do Windows) aí acho bom seguir esse [daqui](https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html#getting-a-screen-on-windows-10-wsl2) (sinceramente fiz com [esse](https://github.com/codam-coding-college/MLX42#installation)).   
 > "Ah Andrey, eu segui tudo direitinho mas não tenho essa `/usr/X11/lib` nem `/usr/X11/include` ou `/usr/X11/man/man3`"
@@ -54,7 +54,7 @@ $ sudo cp -rf
 Se tudo deu certo no teste, então tá na hora de por a mão na massa.   
 Crie um arquivo que termine com `.c` (afinal todo arquivo de Clang é assim), e coloque o seguinte código:
 
-```c
+```main.c
 #include <stdio.h>
 #include <stdlib.h>	
 #include <mlx.h>
@@ -96,19 +96,20 @@ int main() {
 }
 ```
 
-Compile ele com as seguintes flags: `-lmlx -lXext -lX11` e execute o binário (não se preocupe com o que cada flag e parte do código faz, explico depois), você agora deve ter uma janela com o título "Janela" com fundo preto, clique nela e pressione qualquer tecla do teclado, no terminal você verá uma mensagem, agora aperte a tecla `ESC`, mais uma mensagem vai aparecer no terminal e a janela vai sumir encerrando o programa (se você tentou fechar apertando o `X` no canto da janela, não se surpreenda por não funcionar, afinal ainda não programamos para isso).   
-Agora vamos ver o fluxograma do programa para um melhor entendimento:   
+Compile ele com as seguintes flags: `-lmlx -lXext -lX11` e execute o binário (não se preocupe com o que cada flag e parte do código faz, explico depois), você agora deve ter uma janela com o título "Janela" com fundo preto, clique nela e pressione qualquer tecla do teclado, no terminal você verá uma mensagem, agora aperte a tecla `ESC`, mais uma mensagem vai aparecer no terminal e a janela vai sumir encerrando o programa (se você tentou fechar apertando o `X` no canto da janela, não se surpreenda por não funcionar, afinal ainda não programamos para isso).
+
+**📐 Fluxograma:**
 ![Fluxograma](fluxograma.png)
 
 Agora que você entendeu na prática e visualmente o que o programa faz, vamos falar na teoria.   
 Nós criamos uma conexão entre nosso programa e o Xserver, depois criamos uma conexão entre nosso programa e uma janela gerada pelo Xserver, logo após dizemos para o Xserver ficar em loop esperando por eventos (como por exemplo, uma tecla ser pressionada), quando um evento acontece, o Xserver chama uma função que nós programamos, essa função recebe como parâmetro o código da tecla pressionada, e então nós verificamos se a tecla pressionada foi a `ESC`, se sim, nós encerramos o programa, se não, nós imprimimos a tecla pressionada no terminal.
 
-🏳️ As flags de compilação:   
-`-lmlx` manda o compilador linkar com a biblioteca `mlx`, que nós compilamos e instalamos.   
-`-lXext` manda o compilador linkar com a biblioteca `libxext-dev`, [libXext](https://packages.debian.org/sid/libxext-dev) fornece uma interface de cliente X Window System para diversas extensões para o protocolo X.   
-`-lX11` manda o compilador linkar com a biblioteca `Xorg`, [X11](https://pt.wikipedia.org/wiki/X_Window_System) é um software de sistema e um protocolo que fornece uma base para interfaces gráficas de usuário (com o conceito de janelas) e funcionalidade rica de dispositivos de entrada para redes de computadores.
+**🏳️ Flags de Compilação:** <br>
+`-lmlx`: O comando -lmlx instrui o compilador a vincular o programa com a biblioteca mlx, que deve ter sido compilada e instalada anteriormente. <br>
+`-lXext` : Já o comando -lXext instrui o compilador a vincular o programa com a biblioteca libxext-dev, [libXext](https://packages.debian.org/sid/libxext-dev) que fornece uma interface de cliente X Window System para diversas extensões para o protocolo X.  <br>
+`-lX11` : Por fim, o comando -lX11 instrui o compilador a vincular o programa com a biblioteca Xorg, [X11](https://pt.wikipedia.org/wiki/X_Window_System)  que é um software de sistema e um protocolo que fornece uma base para interfaces gráficas de usuário (com o conceito de janelas) e funcionalidade rica de dispositivos de entrada para redes de computadores.  <br>
 
-## FUNÇÕES
+## Funções
 
 ### mlx_clear_window
 
@@ -401,10 +402,11 @@ int	mlx_set_font(void *mlx_ptr, void *win_ptr, char *name);
 ```c
 int	mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string);
 ```
+<br>
 
-Caso queira testar algumas delas existem alguns arquivos .c númerados de `0` a `6`, fiz eles demonstrando algumas funções incluindo algumas que não funcionam (infelizmente a set_font não funciona num nível que causa erro).
+>  🗣️  Caso queira testar algumas delas existem alguns arquivos .c númerados de `0` a `6`, fiz eles demonstrando algumas funções incluindo algumas que não funcionam (infelizmente a set_font não funciona num nível que causa erro).
 
-## Fontes
+## Fontes 📎
 
 Não, não vou passar link de _[comic sans](https://youtu.be/wDgQdr8ZkTw)_ na verdade vou passar link de documentações feitas de forma séria, então caso você já tenha enjoado do meu texto... vaza, xispa daqui.   
 * [harm-smits](https://harm-smits.github.io/42docs/libs/minilibx).   
@@ -418,4 +420,4 @@ Quer fazer parte desse projeto? Clique [AQUI](CONTRIBUTING.md) e leia como contr
 ## Licença 📜
 Este projeto está licenciado sob os termos do arquivo [LICENÇA](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/LICENSE). Veja o arquivo para mais detalhes. <br>
 
-<p align="center"> Documentação criada com revolta e paz no coração por [adantas-](https://github.com/andreyvdl) . </p>
+<p align="center"> Documentação criada com revolta e paz no coração por <a href="https://github.com/andreyvdl">adantas-</a>.</p>
