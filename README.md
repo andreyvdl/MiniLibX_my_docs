@@ -22,7 +22,7 @@ A Minilibx é frequentemente usada em projetos de programação da 42ecole, como
 ## Sumario
 * [MiniLibx;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#MINILIBX) Uma breve descrição da biblioteca e de suas funcionalidades.
 * [Instalar;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#instalação)  Como instalar a biblioteca em um sistema operacional (Windows, Linux ou Mac).
-* [Básico;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#basico) Instruções para a utilização da biblioteca, incluindo exemplos de código.
+* [Básico;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#básico) Instruções para a utilização da biblioteca, incluindo exemplos de código.
 * [Funções;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/FUNCOES.md) Explicação sobre as funções disponíveis, seus parâmetros e seus retornos.
 * [Fontes;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#fontes) Fontes usadas de inspiração na criação desse Doc.
 * [Como contribuir;](https://github.com/andreyvdl/MiniLibX_my_docs/blob/main/README.md#contribua_com_o_projeto) Contribua com a documentação
