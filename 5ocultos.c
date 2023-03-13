@@ -24,6 +24,7 @@ int	destroi_tudo(t_data *data)
 	r = mlx_destroy_display(data->mlx);
 	printf("display = %d\n", r);
 	free(data->mlx);
+	return (0);
 }
 
 int	key_press(int keycode, t_data *data)
@@ -70,6 +71,8 @@ int	main(void)
 	retorno = mlx_hook(data.win, 17, 0, destroi_tudo, &data);
 	printf("hook2 = %d\n", retorno);
 	retorno = mlx_string_put(data.mlx, data.win, 200, 200, 0xFFFFFF, "clique no X");
+	printf("string = %d\n", retorno);
+	retorno = mlx_string_put(data.mlx, data.win, 180, 220, 0xFFFFFF, "ou desenhe com WASD");
 	printf("string = %d\n", retorno);
 	retorno = mlx_do_sync(data.mlx);
 	printf("sync = %d\n", retorno);
